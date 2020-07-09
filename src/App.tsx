@@ -5,6 +5,7 @@ import logo from './logo.svg';
 import './App.css';
 import SideDrawer from './components/SideDrawer';
 import { FiSettings, FiMenu } from 'react-icons/fi';
+import Settings from './components/Settings';
 
 // Wrap spring's animated element with styled
 const StyledApp = styled(animated.div)`
@@ -19,7 +20,7 @@ const StyledApp = styled(animated.div)`
       font-size: 1.6rem;
       margin: 0 auto 0 0;
     }
-    .menu-button {
+    .nav-button {
       height: 100%;
       width: var(--size-logo);
       margin-left: 5px;
@@ -54,6 +55,7 @@ const StyledApp = styled(animated.div)`
 
 const App = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const fadeAnimation = useSpring({
     from: {
@@ -63,16 +65,17 @@ const App = () => {
   });
 
   const toggleDrawer = () => setIsNavOpen(!isNavOpen);
+  const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
 
   return (
     // pass animation directly to the styled component
     <StyledApp style={fadeAnimation}>
       <header className="App-header">
         <h1 className="header__logo">React Spring</h1>
-        <button className="menu-button" onClick={toggleDrawer}>
+        <button className="nav-button" onClick={toggleSettings}>
           <FiSettings style={{ width: '30px' }} />
         </button>
-        <button className="menu-button" onClick={toggleDrawer}>
+        <button className="nav-button" onClick={toggleDrawer}>
           <FiMenu />
         </button>
 
@@ -81,7 +84,9 @@ const App = () => {
           closeSideDrawer={() => setIsNavOpen(false)}
         />
       </header>
-      <main></main>
+      <main>
+        <Settings show={isSettingsOpen} />
+      </main>
     </StyledApp>
   );
 };

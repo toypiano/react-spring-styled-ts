@@ -1,26 +1,27 @@
 import React from 'react';
+import styled from 'styled-components';
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
+const StyledApp = styled.div`
+  header {
+    display: flex;
+  }
+  .App-logo {
+    width: var(--size-logo);
+    height: var(--size-logo);
+  }
+`;
+
+const App = () => {
   return (
-    <div className="App">
+    <StyledApp>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>React Spring</h1>
       </header>
-    </div>
+    </StyledApp>
   );
-}
+};
 
 export default App;

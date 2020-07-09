@@ -4,7 +4,7 @@ import { useTransition, animated } from 'react-spring';
 
 const StyledBackdrop = styled(animated.div)`
   position: fixed;
-  z-index: var(-z-backdrop);
+  z-index: var(--z-backdrop);
   top: 0;
   bottom: 0;
   left: 0;

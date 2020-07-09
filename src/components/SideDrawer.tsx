@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 
 import Backdrop from './Backdrop';
+import Nav from './Nav';
 
 const StyledSideDrawer = styled(animated.div)`
   position: fixed;
@@ -11,24 +12,10 @@ const StyledSideDrawer = styled(animated.div)`
   bottom: 0;
   width: 80%;
   max-width: 400px;
-  padding: 1em;
+  padding: 2em 1em;
   background-color: var(--cl-primary);
   z-index: var(--z-side-drawer);
-
-  nav {
-    a {
-      display: block;
-      text-decoration: none;
-      font-size: 4rem;
-      color: var(--text-secondary);
-      transition: 0.3s ease border;
-      border-bottom: 5px solid transparent;
-      &:hover {
-        border-bottom: 5px solid var(--cl-accent);
-        color: var(--text-primary);
-      }
-    }
-  }
+  box-shadow: var(--box-shadow);
 `;
 
 type SideDrawerProps = {
@@ -45,12 +32,7 @@ const SideDrawer = ({ show, closeSideDrawer }: SideDrawerProps) => {
     <>
       <Backdrop show={show} onClick={closeSideDrawer} />
       <StyledSideDrawer style={animation} onClick={closeSideDrawer}>
-        <nav>
-          <a href="#/">Home</a>
-          <a href="#/">About</a>
-          <a href="#/">Store</a>
-          <a href="#/">Music</a>
-        </nav>
+        <Nav aside />
       </StyledSideDrawer>
     </>
   );

@@ -3,23 +3,26 @@ import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 
 const StyledSettings = styled.div`
-  position: fixed;
+  position: absolute;
+  z-index: var(--z-settings);
   top: 0;
   left: 0;
-  bottom: 0;
-  right: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   .settings__left {
-    width: 30%;
     height: 100%;
+    padding: 3em;
     background: black;
-    padding: 2em 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     h2 {
       text-align: center;
     }
   }
   .settings__right {
-    width: 70%;
+    width: 100%;
     height: 100%;
     background: var(--cl-accent);
   }

@@ -13,7 +13,7 @@ const StyledNav = styled.nav<{ aside?: boolean }>`
   position: relative;
   a {
     display: block;
-    width: 100%;
+    width: ${(props) => (props.aside ? '100%' : 'auto')};
     text-decoration: none;
     font-size: ${(props) => (props.aside ? '4rem' : '1.2rem')};
     color: var(--text-secondary);

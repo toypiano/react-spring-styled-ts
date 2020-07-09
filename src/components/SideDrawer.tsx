@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 
@@ -28,13 +29,14 @@ const SideDrawer = ({ show, closeSideDrawer }: SideDrawerProps) => {
     transform: show ? `translate3d(0,0,0)` : `translate3d(-100%,0,0)`,
   });
 
-  return (
+  return createPortal(
     <>
       <Backdrop show={show} onClick={closeSideDrawer} />
       <StyledSideDrawer style={animation} onClick={closeSideDrawer}>
         <Nav aside />
       </StyledSideDrawer>
-    </>
+    </>,
+    document.getElementById('drawer-hook')!
   );
 };
 

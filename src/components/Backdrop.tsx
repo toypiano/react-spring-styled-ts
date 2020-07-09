@@ -28,14 +28,19 @@ const Backdrop = ({ show, onClick }: BackdropProps) => {
     // "type 'Element[]' is not a constructor function for JSX elements"
     // https://github.com/microsoft/TypeScript/issues/33487
     <>
-      {show &&
-        transitions.map(({ item, props, key }) => (
-          <StyledBackdrop
-            key={key}
-            style={props}
-            onClick={onClick}
-          ></StyledBackdrop>
-        ))}
+      {
+        // mount/unmount single-component
+        transitions.map(
+          ({ item, props, key }) =>
+            item && (
+              <StyledBackdrop
+                key={key}
+                style={props}
+                onClick={onClick}
+              ></StyledBackdrop>
+            )
+        )
+      }
     </>
   );
 };

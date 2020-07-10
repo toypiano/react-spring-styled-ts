@@ -5,6 +5,7 @@
   --cl-info: #13344b;
   --text-primary: #ffffff;
   --text-secondary: #bebebe;
+  --text-inverse: var(--cl-secondary);
   --size-logo: 60px;
 
   --z-backdrop: 100;
@@ -13,8 +14,10 @@
   --z-navbar: 10;
   --z-page: 0;
   --z-settings: 25;
+  --z-modal: 300;
 
   --box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  --border-radius: 4px;
 }
 
 html {

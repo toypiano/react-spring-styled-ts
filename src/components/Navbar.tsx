@@ -28,13 +28,15 @@ const StyledNavbar = styled.header`
   .nav-button {
     height: 100%;
     width: var(--size-logo);
-
+    font: inherit;
+    font-weight: bold;
+    color: var(--text-primary);
     appearance: none;
     background: transparent;
     border: none;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     z-index: var(--z-nav-item);
 
     svg {
@@ -59,15 +61,23 @@ const StyledNavbar = styled.header`
 type NavbarProps = {
   toggleSettings: () => void;
   toggleDrawer: () => void;
+  openJoinModal: () => void;
 };
 
-const Navbar = ({ toggleSettings, toggleDrawer }: NavbarProps) => {
+const Navbar = ({
+  toggleSettings,
+  toggleDrawer,
+  openJoinModal,
+}: NavbarProps) => {
   return (
     <StyledNavbar>
       <NavLink className="header__logo" to="/">
         iSleepMusic
       </NavLink>
       <Nav />
+      <button className="nav-button" onClick={openJoinModal}>
+        Join
+      </button>
       <button className="nav-button" onClick={toggleSettings}>
         <FiSettings style={{ width: '30px' }} />
       </button>

@@ -9,6 +9,7 @@ import SideDrawer from './components/SideDrawer';
 import Settings from './components/Settings';
 import Page from './components/Page';
 import Navbar from './components/Navbar';
+import JoinModal from './components/JoinModal';
 
 // Wrap spring's animated element with styled
 const StyledApp = styled(animated.div)`
@@ -32,6 +33,7 @@ const StyledApp = styled(animated.div)`
 const App = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fadeAnimation = useSpring({
     from: {
@@ -69,18 +71,26 @@ const App = () => {
   return (
     // pass animation directly to the styled component
     <StyledApp style={fadeAnimation}>
-      <Navbar toggleSettings={toggleSettings} toggleDrawer={toggleDrawer} />
+      <Navbar
+        toggleSettings={toggleSettings}
+        toggleDrawer={toggleDrawer}
+        openJoinModal={() => setIsModalOpen(true)}
+      />
       <SideDrawer
         show={isNavOpen}
         closeSideDrawer={() => setIsNavOpen(false)}
       />
       <main>
+        <JoinModal
+          show={isModalOpen}
+          closeModal={() => setIsModalOpen(false)}
+        />
         <Settings show={isSettingsOpen} />
         {routeTransition.map(({ item, key, props }) => (
           <animated.div key={key} style={props}>
             <Switch location={item}>
               <Route path="/" exact>
-                <Page>Home</Page>
+                <Page bg="secondary">Home</Page>
               </Route>
               <Route path="/about">
                 <Page bg="info">About</Page>

@@ -9,7 +9,7 @@ const StyledNav = styled.nav<{ aside?: boolean }>`
   margin-left: ${(props) => (props.aside ? 0 : '2em')};
   flex-direction: ${(props) => (props.aside ? 'column' : 'row')};
   justify-content: space-around;
-  align-items: ${(props) => (props.aside ? 'center' : 'flex-start')};
+  align-items: ${(props) => (props.aside ? 'flex-start' : 'center')};
   position: relative;
   a {
     display: block;
@@ -19,6 +19,8 @@ const StyledNav = styled.nav<{ aside?: boolean }>`
     color: var(--text-secondary);
     transition: 0.3s ease border;
     border-bottom: 5px solid transparent;
+    /* To push link back down after border bottom of 5px */
+    padding-top: 5px;
     &:hover {
       border-bottom: 5px solid var(--cl-accent);
       color: var(--text-primary);

@@ -10,8 +10,9 @@ const StyledModal = styled(animated.div)`
   top: 18vh;
   left: 50%;
   background: white;
-  width: 90%;
-  max-width: 24rem;
+  width: 24rem;
+  /* max-width 100% plays nicer with smaller viewport */
+  max-width: 100%;
   border-radius: var(--border-radius);
   .modal__close-button {
     position: absolute;
@@ -19,8 +20,9 @@ const StyledModal = styled(animated.div)`
     border: none;
     font-size: 2rem;
     color: var(--text-secondary);
-    right: -2rem;
-    top: -2rem;
+    /* half the font-size makes close button overlap at 50% of its width */
+    right: -1rem;
+    top: -1rem;
   }
 `;
 

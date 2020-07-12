@@ -5,7 +5,8 @@ import Modal from './Modal';
 const StyledJoinModal = styled(Modal)`
   .header-img {
     width: 100%;
-    height: 100%;
+    /* fixed height prevents modal body from jumping down when image finishes loading */
+    height: 17rem;
     img {
       display: block;
       width: 100%;

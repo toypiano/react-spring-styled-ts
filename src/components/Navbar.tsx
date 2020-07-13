@@ -27,10 +27,12 @@ const StyledNavbar = styled.header`
   }
   .nav-button {
     height: 100%;
-    width: var(--size-logo);
+    margin-left: 1em;
+    white-space: nowrap;
+    /* width: var(--size-logo); */
     font: inherit;
     font-weight: bold;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     appearance: none;
     background: transparent;
     border: none;
@@ -38,6 +40,7 @@ const StyledNavbar = styled.header`
     justify-content: center;
     align-items: center;
     z-index: var(--z-nav-item);
+    transition: color 0.3s ease;
 
     svg {
       width: 100%;
@@ -46,12 +49,13 @@ const StyledNavbar = styled.header`
       color: var(--text-secondary);
     }
     &:hover {
+      color: var(--text-primary);
       svg {
         color: var(--text-primary);
       }
     }
     &.menu {
-      @media (min-width: 600px) {
+      @media (min-width: 800px) {
         display: none;
       }
     }
@@ -59,15 +63,17 @@ const StyledNavbar = styled.header`
 `;
 
 type NavbarProps = {
-  toggleSettings: () => void;
+  toggleNowPlaying: () => void;
   toggleDrawer: () => void;
   openJoinModal: () => void;
+  closeNowPlaying: () => void;
 };
 
 const Navbar = ({
-  toggleSettings,
+  toggleNowPlaying,
   toggleDrawer,
   openJoinModal,
+  closeNowPlaying,
 }: NavbarProps) => {
   return (
     <StyledNavbar>
@@ -78,7 +84,14 @@ const Navbar = ({
       <button className="nav-button" onClick={openJoinModal}>
         Join
       </button>
-      <button className="nav-button" onClick={toggleSettings}>
+      <button
+        className="nav-button"
+        onClick={toggleNowPlaying}
+        onBlur={closeNowPlaying}
+      >
+        Now Playing
+      </button>
+      <button className="nav-button">
         <FiSettings style={{ width: '30px' }} />
       </button>
       <button className="nav-button menu" onClick={toggleDrawer}>

@@ -6,7 +6,7 @@ import { Route, Switch, useLocation } from 'react-router-dom';
 import './App.css';
 
 import SideDrawer from './components/SideDrawer';
-import Settings from './components/Settings';
+import NowPlaying from './components/NowPlaying';
 import Page from './components/Page';
 import Navbar from './components/Navbar';
 import JoinModal from './components/JoinModal';
@@ -14,6 +14,8 @@ import JoinModal from './components/JoinModal';
 // Wrap spring's animated element with styled
 const StyledApp = styled(animated.div)`
   header {
+    max-width: 1200px;
+    margin: auto;
   }
 
   main {
@@ -32,7 +34,7 @@ const StyledApp = styled(animated.div)`
 
 const App = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [isNowPlayingOpen, setIsNowPlayingOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const fadeAnimation = useSpring({
@@ -66,15 +68,16 @@ const App = () => {
   );
 
   const toggleDrawer = () => setIsNavOpen(!isNavOpen);
-  const toggleSettings = () => setIsSettingsOpen(!isSettingsOpen);
+  const toggleNowPlaying = () => setIsNowPlayingOpen(!isNowPlayingOpen);
 
   return (
     // pass animation directly to the styled component
     <StyledApp style={fadeAnimation}>
       <Navbar
-        toggleSettings={toggleSettings}
+        toggleNowPlaying={toggleNowPlaying}
         toggleDrawer={toggleDrawer}
         openJoinModal={() => setIsModalOpen(true)}
+        closeNowPlaying={() => setIsNowPlayingOpen(false)}
       />
       <SideDrawer
         show={isNavOpen}
@@ -85,7 +88,7 @@ const App = () => {
           show={isModalOpen}
           closeModal={() => setIsModalOpen(false)}
         />
-        <Settings show={isSettingsOpen} />
+        <NowPlaying show={isNowPlayingOpen} />
         {routeTransition.map(({ item, key, props }) => (
           <animated.div key={key} style={props}>
             <Switch location={item}>

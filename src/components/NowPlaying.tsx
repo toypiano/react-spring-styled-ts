@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 
-const StyledSettings = styled.div`
+const StyledNowPlaying = styled.div`
   position: absolute;
   z-index: var(--z-settings);
   top: 0;
@@ -11,7 +11,9 @@ const StyledSettings = styled.div`
   height: 100%;
   display: flex;
   .settings__left {
+    z-index: 1000;
     height: 100%;
+    width: 30%;
     padding: 3em;
     background: black;
     display: flex;
@@ -22,29 +24,29 @@ const StyledSettings = styled.div`
     }
   }
   .settings__right {
-    width: 100%;
+    width: 70%;
     height: 100%;
     background: var(--cl-accent);
   }
 `;
 
-type SettingsProps = {
+type NowPlayingProps = {
   show: boolean;
 };
 
-const Settings = ({ show }: SettingsProps) => {
+const NowPlaying = ({ show }: NowPlayingProps) => {
   const { x } = useSpring({
     x: show ? 0 : 100,
   });
   return (
-    <StyledSettings>
+    <StyledNowPlaying>
       <animated.div
         className="settings__left"
         style={{
           transform: x.interpolate((x) => `translate3d(-${x}%,0,0)`),
         }}
       >
-        <h2>Settings</h2>
+        <h2>Now Playing</h2>
       </animated.div>
       <animated.div
         className="settings__right"
@@ -52,8 +54,8 @@ const Settings = ({ show }: SettingsProps) => {
           transform: x.interpolate((x) => `translate3d(${x}%,0,0)`),
         }}
       ></animated.div>
-    </StyledSettings>
+    </StyledNowPlaying>
   );
 };
 
-export default Settings;
+export default NowPlaying;

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const StyledNav = styled.nav<{ aside?: boolean }>`
   display: ${(props) => (props.aside ? 'block' : 'none')};
   width: 100%;
-  max-width: 500px;
+  max-width: 300px;
   margin-left: ${(props) => (props.aside ? 0 : '2em')};
   flex-direction: ${(props) => (props.aside ? 'column' : 'row')};
   justify-content: space-around;
@@ -26,7 +26,7 @@ const StyledNav = styled.nav<{ aside?: boolean }>`
       color: var(--text-primary);
     }
   }
-  @media (min-width: 600px) {
+  @media (min-width: 800px) {
     display: flex;
   }
 `;
@@ -38,7 +38,6 @@ type NavProps = {
 const Nav = (props: NavProps) => {
   return (
     <StyledNav {...props}>
-      <NavLink to="/">Home</NavLink>
       <NavLink to="/about">About</NavLink>
       <NavLink to="/store">Store</NavLink>
       <NavLink to="/music">Music</NavLink>

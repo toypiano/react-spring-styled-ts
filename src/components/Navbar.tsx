@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { FiSettings, FiMenu } from 'react-icons/fi';
 
 import Nav from './Nav';
+import SettingsMenu from './SettingsMenu';
 
 const StyledNavbar = styled.header`
   position: fixed;
@@ -11,7 +12,7 @@ const StyledNavbar = styled.header`
   left: 0;
   right: 0;
   z-index: var(--z-navbar);
-  height: 50px;
+  height: var(--navbar-height);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -75,6 +76,7 @@ const Navbar = ({
   openJoinModal,
   closeNowPlaying,
 }: NavbarProps) => {
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   return (
     <StyledNavbar>
       <NavLink className="header__logo" to="/">
@@ -91,9 +93,14 @@ const Navbar = ({
       >
         Now Playing
       </button>
-      <button className="nav-button">
+      <button
+        className="nav-button"
+        onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+        onBlur={() => setIsSettingsOpen(false)}
+      >
         <FiSettings style={{ width: '30px' }} />
       </button>
+      <SettingsMenu show={isSettingsOpen} />
       <button className="nav-button menu" onClick={toggleDrawer}>
         <FiMenu />
       </button>

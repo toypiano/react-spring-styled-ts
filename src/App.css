@@ -47,3 +47,8 @@ button,
 a {
   cursor: pointer;
 }
+
+button:focus,
+a:focus {
+  outline: thin dotted;
+}

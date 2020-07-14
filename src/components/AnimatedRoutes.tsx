@@ -10,9 +10,10 @@ const AnimatedRoutes = (props: AnimatedRoutesProps) => {
   const location = useLocation();
 
   const routeTransition = useTransition(
-    location,
-    (location) => location.pathname,
+    location, // items to make transition
+    (location) => location.pathname, //keys (null for atomic items)
     {
+      // lifecycles
       from: {
         opacity: 0,
         position: 'absolute',
@@ -34,8 +35,9 @@ const AnimatedRoutes = (props: AnimatedRoutesProps) => {
     <>
       {routeTransition.map(({ item, key, props: transition }) => (
         <animated.div key={key} style={transition}>
-          <Switch location={item} />
-          <Routes />
+          <Switch location={item}>
+            <Routes />
+          </Switch>
         </animated.div>
       ))}
     </>

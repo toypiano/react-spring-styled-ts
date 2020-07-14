@@ -11,8 +11,8 @@ const StyledNavbar = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  z-index: var(--z-navbar);
   height: var(--navbar-height);
+  z-index: var(--z-navbar);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -27,7 +27,9 @@ const StyledNavbar = styled.header`
     margin: 0 auto 0 0;
   }
   .nav-button {
+    display: block;
     height: 100%;
+    padding: 0;
     margin-left: 1em;
     white-space: nowrap;
     /* width: var(--size-logo); */
@@ -37,9 +39,6 @@ const StyledNavbar = styled.header`
     appearance: none;
     background: transparent;
     border: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     z-index: var(--z-nav-item);
     transition: color 0.3s ease;
 
@@ -56,9 +55,14 @@ const StyledNavbar = styled.header`
       }
     }
     &.menu {
+      height: 100%;
+      width: 40px;
       @media (min-width: 800px) {
         display: none;
       }
+    }
+    &.icon {
+      margin-top: 2px;
     }
   }
 `;
@@ -94,14 +98,14 @@ const Navbar = ({
         Now Playing
       </button>
       <button
-        className="nav-button"
+        className="nav-button icon"
         onClick={() => setIsSettingsOpen(!isSettingsOpen)}
         onBlur={() => setIsSettingsOpen(false)}
       >
         <FiSettings style={{ width: '30px' }} />
       </button>
       <SettingsMenu show={isSettingsOpen} />
-      <button className="nav-button menu" onClick={toggleDrawer}>
+      <button className="nav-button menu icon" onClick={toggleDrawer}>
         <FiMenu />
       </button>
     </StyledNavbar>

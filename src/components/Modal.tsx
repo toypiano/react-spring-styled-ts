@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 import Backdrop from './Backdrop';
 import { FiXCircle } from 'react-icons/fi';
+import { createPortal } from 'react-dom';
 
 const StyledModal = styled(animated.div)`
   position: fixed;
@@ -48,7 +49,8 @@ const Modal = ({ children, show, closeModal, className }: ModalProps) => {
       transform: `translate3d(-50%, -100%, 0)`,
     },
   });
-  return (
+
+  const content = (
     <>
       <Backdrop show={show} onClick={closeModal} />
       {transition.map(
@@ -64,6 +66,7 @@ const Modal = ({ children, show, closeModal, className }: ModalProps) => {
       )}
     </>
   );
+  return createPortal(content, document.getElementById('modal-hook')!);
 };
 
 export default Modal;

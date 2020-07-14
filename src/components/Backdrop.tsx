@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
+import { createPortal } from 'react-dom';
 
 const StyledBackdrop = styled(animated.div)`
   position: fixed;
@@ -23,7 +24,8 @@ const Backdrop = ({ show, onClick }: BackdropProps) => {
     enter: { opacity: 1 },
     leave: { opacity: 0 },
   });
-  return (
+
+  const content = (
     // Wrap the mapped list inside React Fragment to avoid
     // "type 'Element[]' is not a constructor function for JSX elements"
     // https://github.com/microsoft/TypeScript/issues/33487
@@ -43,6 +45,7 @@ const Backdrop = ({ show, onClick }: BackdropProps) => {
       }
     </>
   );
+  return createPortal(content, document.getElementById('backdrop-hook')!);
 };
 
 export default Backdrop;
